@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoviaGate Technology, LLC | Home</title>
+    <link rel="stylecss" href="stylesheet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 antialiased">
+    <div
+      id="message-box"
+      class="fixed top-4 right-4 p-4 rounded-lg shadow-lg text-white z-50 transition-opacity duration-300 opacity-0 hidden"
+    ></div>
+
+    <header class="bg-white shadow-md py-4 sticky top-0 z-40 rounded-b-xl m-4">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="flex items-center mb-4 md:mb-0">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-blue-600 mr-2"
+          >
+            <path
+              d="M12 2L2 7V17L12 22L22 17V7L12 2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 7L17 10L12 15L7 10L12 7Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="text-2xl font-bold text-gray-800">RoviaGate Tech</span>
+        </div>
+
+        <nav
+          class="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-8 text-lg font-medium mb-4 md:mb-0"
+        >
+          <button
+            id="nav-home"
+            class="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-semibold"
+          >
+            Home
+          </button>
+          <button
+            id="nav-services"
+            class="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
+            Services
+          </button>
+          <button
+            id="nav-products"
+            class="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
+            Products
+          </button>
+          <button
+            id="nav-about"
+            class="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
+            About
+          </button>
+          <button
+            id="nav-contact"
+            class="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+          >
+            Contact
+          </button>
+        </nav>
+
+        <form id="search-form" class="w-full md:w-auto">
+          <div class="relative">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search..."
+              class="w-full md:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            />
+            <button
+              type="submit"
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors duration-200"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <main id="main-content" class="container mx-auto py-8"></main>
+
+    <div
+      id="item-details-modal"
+      class="fixed inset-0 modal-overlay flex items-center justify-center p-4 z-50 hidden"
+    >
+      <div
+        class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto relative"
+      >
+        <button
+          id="modal-close-button"
+          class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold"
+        >
+          &times;
+        </button>
+        <h2 id="modal-title" class="text-4xl font-bold text-gray-900 mb-6"></h2>
+        <img
+          id="modal-image"
+          src=""
+          alt=""
+          class="w-full h-64 object-cover rounded-lg mb-6"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x400/E0E0E0/333333?text=Image+Error';"
+        />
+        <p
+          id="modal-price"
+          class="text-2xl font-bold text-blue-600 mb-4 hidden"
+        ></p>
+        <p
+          id="modal-description"
+          class="text-gray-700 text-lg leading-relaxed mb-6"
+        ></p>
+
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            ✨ Enhanced Description
+          </h3>
+          <button
+            id="enhance-description-button"
+            class="bg-purple-600 text-white py-2 px-5 rounded-full hover:bg-purple-700 transition-colors duration-200 shadow-md flex items-center justify-center"
+          >
+            <span id="enhance-description-text">✨ Enhance Description</span>
+            <svg
+              id="enhance-description-spinner"
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </button>
+          <div
+            id="enhanced-description-output"
+            class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-gray-800 hidden"
+          >
+            <p class="font-semibold mb-2">Generated Description:</p>
+            <p id="enhanced-description-text-output"></p>
+          </div>
+        </div>
+
+        <button
+          id="modal-add-to-cart-button"
+          class="mt-8 w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md hidden"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8 rounded-t-xl m-4">
+      <div class="container mx-auto px-6 text-center text-sm">
+        <p class="mb-4">
+          Copyright© <span id="current-year"></span> RoviaGate Technology, LLC.
+          All rights reserved.
+        </p>
+        <div class="flex justify-center space-x-6 mb-4">
+          <a href="#" class="hover:text-blue-400 transition-colors duration-200"
+            >Privacy Policy</a
+          >
+          <a href="#" class="hover:text-blue-400 transition-colors duration-200"
+            >Terms of Service</a
+          >
+          <a href="#" class="hover:text-blue-400 transition-colors duration-200"
+            >Sitemap</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // --- DOM Elements ---
+      const mainContent = document.getElementById("main-content");
+      const navHome = document.getElementById("nav-home");
+      const navServices = document.getElementById("nav-services");
+      const navProducts = document.getElementById("nav-products");
+      const navAbout = document.getElementById("nav-about");
+      const navContact = document.getElementById("nav-contact");
+      const searchForm = document.getElementById("search-form");
+      const searchInput = document.getElementById("search-input");
+      const messageBox = document.getElementById("message-box");
+      const currentYearSpan = document.getElementById("current-year");
+
+      // Modal Elements
+      const itemDetailsModal = document.getElementById("item-details-modal");
+      const modalCloseButton = document.getElementById("modal-close-button");
+      const modalTitle = document.getElementById("modal-title");
+      const modalImage = document.getElementById("modal-image");
+      const modalPrice = document.getElementById("modal-price");
+      const modalDescription = document.getElementById("modal-description");
+      const modalAddToCartButton = document.getElementById(
+        "modal-add-to-cart-button"
+      );
+      const enhanceDescriptionButton = document.getElementById(
+        "enhance-description-button"
+      );
+      const enhanceDescriptionText = document.getElementById(
+        "enhance-description-text"
+      );
+      const enhanceDescriptionSpinner = document.getElementById(
+        "enhance-description-spinner"
+      );
+      const enhancedDescriptionOutput = document.getElementById(
+        "enhanced-description-output"
+      );
+      const enhancedDescriptionTextOutput = document.getElementById(
+        "enhanced-description-text-output"
+      );
+
+      // --- Data ---
+      const services = [
+        {
+          id: 1,
+          title: "Web Development",
+          description:
+            "Building responsive and modern websites tailored to your needs.",
+          image: "https://placehold.co/400x250/F3F4F6/1F2937?text=Web+Dev",
+        },
+        {
+          id: 2,
+          title: "Mobile App Development",
+          description:
+            "Creating intuitive and high-performance mobile applications for iOS and Android.",
+          image: "https://placehold.co/400x250/F3F4F6/1F2937?text=Mobile+App",
+        },
+        {
+          id: 3,
+          title: "IT Consulting",
+          description:
+            "Expert advice and solutions to optimize your business technology infrastructure.",
+          image:
+            "https://placehold.co/400x250/F3F4F6/1F2937?text=IT+Consulting",
+        },
+        {
+          id: 4,
+          title: "Digital Marketing",
+          description:
+            "Strategies to enhance your online presence and reach your target audience effectively.",
+          image:
+            "https://placehold.co/400x250/F3F4F6/1F2937?text=Digital+Marketing",
+        },
+      ];
+
+      const products = [
+        {
+          id: 1,
+          name: "Premium Software Suite",
+          description:
+            "An all-in-one software solution for business productivity.",
+          price: "$299.99",
+          image: "https://placehold.co/300x200/F3F4F6/1F2937?text=Product+1",
+        },
+        {
+          id: 2,
+          name: "Smart Home Device",
+          description: "Automate your home with our cutting-edge smart device.",
+          price: "$149.99",
+          image: "https://placehold.co/300x200/F3F4F6/1F2937?text=Product+2",
+        },
+
+        {
+          id: 3,
+          name: "E-commerce Theme Pack",
+          description: "A collection of modern themes for your online store.",
+          price: "$79.00",
+          image: "https://placehold.co/300x200/F3F4F6/1F2937?text=Product+3",
+        },
+        {
+          id: 3,
+          name: "Smart Home CCTV Camera",
+          description: "Automate your home with our cutting-edge smart device.",
+          price: "$140",
+          image: "https://placehold.co/300x200/F3F4F6/1F2937?text=Product+4",
+        },
+      ];
+
+      const testimonials = [
+        {
+          id: 1,
+          quote:
+            "RoviaGate Technology transformed our online presence. Their web development service was exceptional!",
+          author: "Jane Doe, CEO of Tech Innovations",
+        },
+        {
+          id: 2,
+          quote:
+            "The mobile app developed by RoviaGate is incredibly user-friendly and performs flawlessly. Highly recommend!",
+          author: "John Smith, Founder of Mobile Solutions",
+        },
+        {
+          id: 3,
+          quote:
+            "Their IT consulting helped us streamline our operations and significantly cut costs. A truly valuable partner.",
+          author: "Alice Johnson, Operations Manager at Global Corp",
+        },
+      ];
+
+      // --- State Variables ---
+      let currentPage = "home";
+      let selectedItem = null;
+      let isEnhancingDescription = false;
+      let isAskingFaq = false;
+      let isRecommendingServices = false;
+      let isDraftingEmail = false;
+      let contactForm = { name: "", email: "", subject: "", message: "" };
+      let userNeeds = "";
+      let faqQuestion = "";
+      let recommendedServices = "";
+      let draftedEmail = "";
+      let faqAnswer = "";
+
+      // --- Utility Functions ---
+
+      /**
+       * Displays a temporary message box notification.
+       * @param {string} message - The message to display.
+       * @param {string} type - 'success' or 'info' or 'error' for styling.
+       */
+      function showMessageBox(message, type) {
+        messageBox.textContent = message;
+        messageBox.classList.remove(
+          "hidden",
+          "opacity-0",
+          "bg-green-500",
+          "bg-blue-500",
+          "bg-red-500"
+        );
+        if (type === "success") {
+          messageBox.classList.add("bg-green-500");
+        } else if (type === "info") {
+          messageBox.classList.add("bg-blue-500");
+        } else if (type === "error") {
+          messageBox.classList.add("bg-red-500");
+        }
+        messageBox.classList.add("opacity-100");
+
+        setTimeout(() => {
+          messageBox.classList.remove("opacity-100");
+          messageBox.classList.add("opacity-0");
+          setTimeout(() => {
+            messageBox.classList.add("hidden");
+          }, 300); // Allow fade out before hiding
+        }, 3000); // Hide after 3 seconds
+      }
+
+      /**
+       * Sets the active navigation button styling.
+       * @param {HTMLElement} activeNavButton - The button to set as active.
+       */
+      function setActiveNav(activeNavButton) {
+        const navButtons = [
+          navHome,
+          navServices,
+          navProducts,
+          navAbout,
+          navContact,
+        ];
+        navButtons.forEach((button) => {
+          button.classList.remove("text-blue-600", "font-semibold");
+          button.classList.add("text-gray-700");
+        });
+        activeNavButton.classList.remove("text-gray-700");
+        activeNavButton.classList.add("text-blue-600", "font-semibold");
+      }
+
+      // --- Page Rendering Functions ---
+
+      function renderHomePage() {
+        setActiveNav(navHome);
+        mainContent.innerHTML = `
+                <section class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 md:py-32 overflow-hidden rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6 text-center relative z-10">
+                        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight animate-fade-in-down">
+                            Innovate. Transform. Excel.
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-10 opacity-90 animate-fade-in-up">
+                            Your trusted partner in cutting-edge technology solutions.
+                        </p>
+                        <button id="hero-explore-services" class="bg-white text-blue-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Explore Our Services
+                        </button>
+                    </div>
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute top-0 left-0 w-48 h-48 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                </section>
+
+                <section id="services-section" class="py-16 bg-gray-50 rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Services</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            ${services
+                              .map(
+                                (service) => `
+                                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden transform hover:-translate-y-2">
+                                    <img src="${service.image}" alt="${service.title}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x250/E0E0E0/333333?text=Image+Error';" />
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">${service.title}</h3>
+                                        <p class="text-gray-600 leading-relaxed">${service.description}</p>
+                                        <button data-item-id="${service.id}" data-item-type="service" class="view-details-button mt-5 text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
+                                            Learn More &rarr;
+                                        </button>
+                                    </div>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="products-section" class="py-16 bg-white rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Products</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            ${products
+                              .map(
+                                (product) => `
+                                <div class="bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden transform hover:-translate-y-2">
+                                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/300x200/E0E0E0/333333?text=Image+Error';" />
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">${product.name}</h3>
+                                        <p class="text-gray-600 mb-4">${product.description}</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-blue-600 text-xl font-bold">${product.price}</span>
+                                            <button data-item-id="${product.id}" data-item-type="product" class="view-details-button bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-md">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="testimonials-section" class="py-16 bg-gray-100 rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">What Our Clients Say</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${testimonials
+                              .map(
+                                (testimonial) => `
+                                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-between transform hover:scale-105 transition-transform duration-300">
+                                    <p class="text-gray-700 text-lg italic mb-6">"${testimonial.quote}"</p>
+                                    <p class="text-gray-900 font-semibold text-right">- ${testimonial.author}</p>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact-cta-section" class="relative bg-gradient-to-r from-green-500 to-teal-600 text-white py-20 md:py-24 overflow-hidden rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6 text-center relative z-10">
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 animate-fade-in-down">
+                            Ready to Transform Your Business?
+                        </h2>
+                        <p class="text-xl md:text-2xl mb-10 opacity-90 animate-fade-in-up">
+                            Get in touch with our experts today for a free consultation.
+                        </p>
+                        <button id="cta-contact-button" class="bg-white text-green-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                            Contact Us Now
+                        </button>
+                    </div>
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute top-0 left-0 w-48 h-48 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                        <div class="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                </section>
+            `;
+        // Add event listeners for dynamically loaded content
+        document
+          .getElementById("hero-explore-services")
+          .addEventListener("click", () => {
+            currentPage = "services";
+            renderPage();
+          });
+        document
+          .getElementById("cta-contact-button")
+          .addEventListener("click", () => {
+            currentPage = "contact";
+            renderPage();
+          });
+        document.querySelectorAll(".view-details-button").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const itemId = parseInt(event.target.dataset.itemId);
+            const itemType = event.target.dataset.itemType;
+            const item =
+              itemType === "service"
+                ? services.find((s) => s.id === itemId)
+                : products.find((p) => p.id === itemId);
+            openModal(item);
+          });
+        });
+      }
+
+      function renderServicesPage() {
+        setActiveNav(navServices);
+        mainContent.innerHTML = `
+                <section class="py-16 bg-gray-50 rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Detailed Services</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            ${services
+                              .map(
+                                (service) => `
+                                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                                    <img src="${service.image}" alt="${service.title}" class="w-full md:w-1/3 h-48 object-cover rounded-lg flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/400x250/E0E0E0/333333?text=Image+Error';" />
+                                    <div class="flex-grow">
+                                        <h3 class="text-3xl font-semibold text-gray-900 mb-4">${service.title}</h3>
+                                        <p class="text-gray-700 leading-relaxed">${service.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <button data-item-id="${service.id}" data-item-type="service" class="view-details-button mt-6 bg-blue-600 text-white py-2 px-5 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-md">
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+
+                        <div class="mt-16 pt-8 border-t border-gray-200">
+                            <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">✨ Get Service Recommendations</h3>
+                            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="user-needs" class="block text-lg font-medium text-gray-700 mb-2">Describe your needs</label>
+                                        <textarea
+                                            id="user-needs"
+                                            name="user-needs"
+                                            rows="4"
+                                            class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                                            placeholder="e.g., I need a new website for my small business with e-commerce capabilities and strong SEO."
+                                        >${userNeeds}</textarea>
+                                    </div>
+                                    <button id="get-recommendations-button" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-md font-semibold hover:bg-indigo-700 transition-colors duration-200 shadow-md flex items-center justify-center">
+                                        <span id="recommendations-text">✨ Get Recommendations</span>
+                                        <svg id="recommendations-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="recommended-services-output" class="mt-4 p-4 bg-purple-50 rounded-md border border-purple-200 text-gray-800 ${
+                                      recommendedServices ? "" : "hidden"
+                                    }">
+                                        <p class="font-semibold mb-2">Our Recommendations:</p>
+                                        <p id="recommended-services-text" class="whitespace-pre-wrap">${recommendedServices}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        // Add event listeners for dynamically loaded content
+        document.querySelectorAll(".view-details-button").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const itemId = parseInt(event.target.dataset.itemId);
+            const itemType = event.target.dataset.itemType;
+            const item =
+              itemType === "service"
+                ? services.find((s) => s.id === itemId)
+                : products.find((p) => p.id === itemId);
+            openModal(item);
+          });
+        });
+        document
+          .getElementById("user-needs")
+          .addEventListener("input", (e) => (userNeeds = e.target.value));
+        document
+          .getElementById("get-recommendations-button")
+          .addEventListener("click", getServiceRecommendations);
+      }
+
+      function renderProductsPage() {
+        setActiveNav(navProducts);
+        mainContent.innerHTML = `
+                <section class="py-16 bg-white rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Full Product Catalog</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${products
+                              .map(
+                                (product) => `
+                                <div class="bg-gray-50 rounded-xl shadow-lg p-6 flex flex-col justify-between transform hover:-translate-y-1 transition-transform duration-200">
+                                    <img src="${product.image}" alt="${product.name}" class="w-full h-56 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/300x200/E0E0E0/333333?text=Image+Error';" />
+                                    <div>
+                                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">${product.name}</h3>
+                                        <p class="text-gray-600 mb-4 text-sm">${product.description}</p>
+                                        <div class="flex justify-between items-center mt-auto">
+                                            <span class="text-blue-600 text-2xl font-bold">${product.price}</span>
+                                            <button data-item-id="${product.id}" data-item-type="product" class="view-details-button bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-md">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                </section>
+            `;
+        // Add event listeners for dynamically loaded content
+        document.querySelectorAll(".view-details-button").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const itemId = parseInt(event.target.dataset.itemId);
+            const itemType = event.target.dataset.itemType;
+            const item =
+              itemType === "service"
+                ? services.find((s) => s.id === itemId)
+                : products.find((p) => p.id === itemId);
+            openModal(item);
+          });
+        });
+      }
+
+      function renderAboutPage() {
+        setActiveNav(navAbout);
+        mainContent.innerHTML = `
+                <section class="py-16 bg-gray-50 rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6 text-gray-800">
+                        <h2 class="text-4xl font-bold text-center mb-12">About RoviaGate Technology</h2>
+                        <div class="max-w-3xl mx-auto text-lg leading-relaxed">
+                            <p class="mb-6">
+                                RoviaGate Technology, LLC is a leading provider of innovative IT solutions, dedicated to empowering businesses and individuals through cutting-edge technology. Founded with a vision to bridge the gap between complex technological challenges and practical, user-friendly solutions, we have grown to become a trusted partner for clients across various industries.
+                            </p>
+                            <p class="mb-6">
+                                Our team of highly skilled professionals brings together diverse expertise in web development, mobile application creation, cloud computing, cybersecurity, and IT consulting. We pride ourselves on our commitment to quality, client satisfaction, and delivering measurable results that drive growth and efficiency.
+                            </p>
+                            <p class="mb-6">
+                                At RoviaGate, we believe in fostering long-term relationships with our clients by understanding their unique needs and providing tailored solutions that exceed expectations. Our minimalist, modern, and classic design philosophy extends not only to the products we build but also to our approach in simplifying technology for everyone.
+                            </p>
+                            <p>
+                                Join us on a journey to innovate, transform, and excel in the digital landscape.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            `;
+      }
+
+      function renderContactPage() {
+        setActiveNav(navContact);
+        mainContent.innerHTML = `
+                <section class="py-16 bg-white rounded-lg shadow-lg m-4">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Contact Us</h2>
+                        <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-xl shadow-lg">
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="contact-name" class="block text-lg font-medium text-gray-700 mb-2">Your Name</label>
+                                    <input
+                                        type="text"
+                                        id="contact-name"
+                                        name="name"
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                                        placeholder=""
+                                        value="${contactForm.name}"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="block text-lg font-medium text-gray-700 mb-2">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="contact-email"
+                                        name="email"
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                                        placeholder="you@example.com"
+                                        value="${contactForm.email}"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="contact-subject" class="block text-lg font-medium text-gray-700 mb-2">Subject</label>
+                                    <input
+                                        type="text"
+                                        id="contact-subject"
+                                        name="subject"
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                                        placeholder="Inquiry about services"
+                                        value="${contactForm.subject}"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="contact-message" class="block text-lg font-medium text-gray-700 mb-2">Your Message</label>
+                                    <textarea
+                                        id="contact-message"
+                                        name="message"
+                                        rows="5"
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                                        placeholder="Tell us how we can help you..."
+                                        value="${contactForm.message}"
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    id="send-message-button"
+                                    class="w-full bg-blue-600 text-white py-3 px-6 rounded-md font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                                >
+                                    Send Message
+                                </button>
+                            </form>
+
+                          
+                                </button>
+                                <div id="drafted-email-output" class="mt-4 p-4 bg-green-50 rounded-md border border-green-200 text-gray-800 ${
+                                  draftedEmail ? "" : "hidden"
+                                }">
+                                    <p class="font-semibold mb-2">Drafted Email:</p>
+                                    <pre id="drafted-email-text" class="whitespace-pre-wrap font-sans text-sm">${draftedEmail}</pre>
+                                </div>
+                            </div>
+
+                            
+                    
+
+                                    <div id="faq-answer-output" class="mt-4 p-4 bg-blue-50 rounded-md border border-blue-200 text-gray-800 ${
+                                      faqAnswer ? "" : "hidden"
+                                    }">
+                                        <p class="font-semibold mb-2">Answer:</p>
+                                        <p id="faq-answer-text">${faqAnswer}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 text-center text-gray-700">
+                                <p class="mb-2"><strong>Call Us:</strong> +(231) 776 765707</p>
+                                <p class="mb-2"><strong>Email Us:</strong> info@roviagatetechnology.com</p>
+                                <p><strong>Opening Hours:</strong> Mon - Fri, 8:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        // Add event listeners for dynamically loaded content
+        const contactFormEl = document.getElementById("contact-form");
+        contactFormEl.addEventListener("input", (e) => {
+          contactForm[e.target.name] = e.target.value;
+        });
+        contactFormEl.addEventListener("submit", (e) => {
+          e.preventDefault();
+          showMessageBox("Message sent successfully!", "success");
+        });
+
+        document
+          .getElementById("draft-email-button")
+          .addEventListener("click", draftEmailResponse);
+        document
+          .getElementById("faq-question")
+          .addEventListener("input", (e) => (faqQuestion = e.target.value));
+        document
+          .getElementById("ask-faq-button")
+          .addEventListener("click", askFAQQuestion);
+      }
+
+      /**
+       * Renders the current page based on the `currentPage` state.
+       */
+      function renderPage() {
+        switch (currentPage) {
+          case "home":
+            renderHomePage();
+            break;
+          case "services":
+            renderServicesPage();
+            break;
+          case "products":
+            renderProductsPage();
+            break;
+          case "about":
+            renderAboutPage();
+            break;
+          case "contact":
+            renderContactPage();
+            break;
+          default:
+            renderHomePage();
+        }
+      }
+
+      // --- Modal Functions ---
+
+      /**
+       * Opens the item details modal with the given item data.
+       * @param {object} item - The service or product item object.
+       */
+      function openModal(item) {
+        selectedItem = item;
+        modalTitle.textContent = item.title || item.name;
+        modalImage.src = item.image;
+        modalDescription.textContent = item.description;
+
+        if (item.price) {
+          modalPrice.textContent = item.price;
+          modalPrice.classList.remove("hidden");
+          modalAddToCartButton.classList.remove("hidden");
+        } else {
+          modalPrice.classList.add("hidden");
+          modalAddToCartButton.classList.add("hidden");
+        }
+
+        // Reset enhanced description section
+        enhancedDescriptionTextOutput.textContent = "";
+        enhancedDescriptionOutput.classList.add("hidden");
+        enhanceDescriptionText.textContent = "✨ Enhance Description";
+        enhanceDescriptionSpinner.classList.add("hidden");
+        enhanceDescriptionButton.disabled = false;
+        isEnhancingDescription = false;
+
+        itemDetailsModal.classList.remove("hidden");
+      }
+
+      /**
+       * Closes the item details modal.
+       */
+      function closeModal() {
+        itemDetailsModal.classList.add("hidden");
+        selectedItem = null;
+      }
+
+      async function generateEnhancedDescription() {
+        if (!selectedItem || isEnhancingDescription) return;
+
+        isEnhancingDescription = true;
+        enhanceDescriptionText.textContent = "Generating...";
+        enhanceDescriptionSpinner.classList.remove("hidden");
+        enhanceDescriptionButton.disabled = true;
+        enhancedDescriptionTextOutput.textContent =
+          "Generating a more detailed description...";
+        enhancedDescriptionOutput.classList.remove("hidden");
+
+        const prompt = `Elaborate on the following description for a product or service, making it more engaging and detailed, suitable for an e-commerce or service website. Keep it concise and professional. Original description: "${selectedItem.description}"`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // Leave as empty string, Canvas will provide in runtime
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+
+          if (
+            result.candidates &&
+            result.candidates.length > 0 &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0
+          ) {
+            const text = result.candidates[0].content.parts[0].text;
+            enhancedDescriptionTextOutput.textContent = text;
+          } else {
+            enhancedDescriptionTextOutput.textContent =
+              "Failed to generate description. Please try again.";
+            console.error("Gemini API response structure unexpected:", result);
+          }
+        } catch (error) {
+          enhancedDescriptionTextOutput.textContent =
+            "Error generating description. Please check your network connection.";
+          console.error("Error calling Gemini API:", error);
+        } finally {
+          isEnhancingDescription = false;
+          enhanceDescriptionText.textContent = "✨ Enhance Description";
+          enhanceDescriptionSpinner.classList.add("hidden");
+          enhanceDescriptionButton.disabled = false;
+        }
+      }
+
+      async function askFAQQuestion() {
+        const faqQuestionInput = document.getElementById("faq-question");
+        const faqButtonText = document.getElementById("faq-button-text");
+        const faqSpinner = document.getElementById("faq-spinner");
+        const faqAnswerOutput = document.getElementById("faq-answer-output");
+        const faqAnswerText = document.getElementById("faq-answer-text");
+
+        if (!faqQuestionInput.value.trim() || isAskingFaq) {
+          showMessageBox("Please enter a question.", "error");
+          return;
+        }
+
+        isAskingFaq = true;
+        faqButtonText.textContent = "Thinking...";
+        faqSpinner.classList.remove("hidden");
+        faqQuestionInput.disabled = true;
+        document.getElementById("ask-faq-button").disabled = true;
+        faqAnswerText.textContent = "Thinking of an answer...";
+        faqAnswerOutput.classList.remove("hidden");
+
+        const prompt = `Answer the following question about a technology company that provides web development, mobile app development, IT consulting, and digital marketing services, and sells software and smart devices. Keep the answer concise and professional. Question: "${faqQuestionInput.value}"`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+
+          if (
+            result.candidates &&
+            result.candidates.length > 0 &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0
+          ) {
+            const text = result.candidates[0].content.parts[0].text;
+            faqAnswerText.textContent = text;
+            faqAnswer = text; // Update global state
+          } else {
+            faqAnswerText.textContent =
+              "Could not find an answer. Please rephrase your question.";
+            console.error("Gemini API response structure unexpected:", result);
+          }
+        } catch (error) {
+          faqAnswerText.textContent =
+            "Error getting answer. Please check your network connection.";
+          console.error("Error calling Gemini API for FAQ:", error);
+        } finally {
+          isAskingFaq = false;
+          faqButtonText.textContent = "✨ Get Answer";
+          faqSpinner.classList.add("hidden");
+          faqQuestionInput.disabled = false;
+          document.getElementById("ask-faq-button").disabled = false;
+        }
+      }
+
+      async function getServiceRecommendations() {
+        const userNeedsInput = document.getElementById("user-needs");
+        const recommendationsText = document.getElementById(
+          "recommendations-text"
+        );
+        const recommendationsSpinner = document.getElementById(
+          "recommendations-spinner"
+        );
+        const recommendedServicesOutput = document.getElementById(
+          "recommended-services-output"
+        );
+        const recommendedServicesText = document.getElementById(
+          "recommended-services-text"
+        );
+
+        if (!userNeedsInput.value.trim() || isRecommendingServices) {
+          showMessageBox(
+            "Please describe your needs to get recommendations.",
+            "error"
+          );
+          return;
+        }
+
+        isRecommendingServices = true;
+        recommendationsText.textContent = "Generating...";
+        recommendationsSpinner.classList.remove("hidden");
+        userNeedsInput.disabled = true;
+        document.getElementById("get-recommendations-button").disabled = true;
+        recommendedServicesText.textContent = "Generating recommendations...";
+        recommendedServicesOutput.classList.remove("hidden");
+
+        const serviceTitles = services.map((s) => s.title).join(", ");
+        const prompt = `Based on the following user needs, recommend which of these services from RoviaGate Technology would be most suitable: ${serviceTitles}. Explain why each recommended service is a good fit. User needs: "${userNeedsInput.value}"`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+
+          if (
+            result.candidates &&
+            result.candidates.length > 0 &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0
+          ) {
+            const text = result.candidates[0].content.parts[0].text;
+            recommendedServicesText.textContent = text;
+            recommendedServices = text; // Update global state
+          } else {
+            recommendedServicesText.textContent =
+              "Could not generate recommendations. Please try again.";
+            console.error("Gemini API response structure unexpected:", result);
+          }
+        } catch (error) {
+          recommendedServicesText.textContent =
+            "Error getting recommendations. Please check your network connection.";
+          console.error("Error calling Gemini API for recommendations:", error);
+        } finally {
+          isRecommendingServices = false;
+          recommendationsText.textContent = "✨ Get Recommendations";
+          recommendationsSpinner.classList.add("hidden");
+          userNeedsInput.disabled = false;
+          document.getElementById(
+            "get-recommendations-button"
+          ).disabled = false;
+        }
+      }
+
+      async function draftEmailResponse() {
+        const draftEmailButtonText =
+          document.getElementById("draft-email-text");
+        const draftEmailSpinner = document.getElementById(
+          "draft-email-spinner"
+        );
+        const draftedEmailOutput = document.getElementById(
+          "drafted-email-output"
+        );
+        const draftedEmailText = document.getElementById("drafted-email-text");
+
+        if (
+          !contactForm.subject.trim() ||
+          !contactForm.message.trim() ||
+          isDraftingEmail
+        ) {
+          showMessageBox(
+            "Please fill in Subject and Message to draft an email.",
+            "error"
+          );
+          return;
+        }
+
+        isDraftingEmail = true;
+        draftEmailButtonText.textContent = "Drafting...";
+        draftEmailSpinner.classList.remove("hidden");
+        document.getElementById("draft-email-button").disabled = true;
+        draftedEmailText.textContent = "Drafting email response...";
+        draftedEmailOutput.classList.remove("hidden");
+
+        const prompt = `Draft a professional and helpful email response to a customer inquiry. The customer's name is "${
+          contactForm.name || "Valued Customer"
+        }". Their email is "${
+          contactForm.email
+        }". The subject of their inquiry is "${
+          contactForm.subject
+        }". Their message is: "${contactForm.message}".
+            The company is RoviaGate Technology, providing web development, mobile app development, IT consulting, and digital marketing services, and selling software and smart devices. Start with a polite greeting and address the inquiry directly. Conclude with a professional closing.`;
+
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+
+          if (
+            result.candidates &&
+            result.candidates.length > 0 &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0
+          ) {
+            const text = result.candidates[0].content.parts[0].text;
+            draftedEmailText.textContent = text;
+            draftedEmail = text; // Update global state
+          } else {
+            draftedEmailText.textContent =
+              "Failed to draft email. Please try again.";
+            console.error("Gemini API response structure unexpected:", result);
+          }
+        } catch (error) {
+          draftedEmailText.textContent =
+            "Error drafting email. Please check your network connection.";
+          console.error("Error calling Gemini API for email draft:", error);
+        } finally {
+          isDraftingEmail = false;
+          draftEmailButtonText.textContent = "✨ Draft Response";
+          draftEmailSpinner.classList.add("hidden");
+          document.getElementById("draft-email-button").disabled = false;
+        }
+      }
+
+      // --- Event Listeners ---
+      document.addEventListener("DOMContentLoaded", () => {
+        currentYearSpan.textContent = new Date().getFullYear();
+        renderPage(); // Initial page render
+
+        // Navigation button click handlers
+        navHome.addEventListener("click", () => {
+          currentPage = "home";
+          renderPage();
+        });
+        navServices.addEventListener("click", () => {
+          currentPage = "services";
+          renderPage();
+        });
+        navProducts.addEventListener("click", () => {
+          currentPage = "products";
+          renderPage();
+        });
+        navAbout.addEventListener("click", () => {
+          currentPage = "about";
+          renderPage();
+        });
+        navContact.addEventListener("click", () => {
+          currentPage = "contact";
+          renderPage();
+        });
+
+        // Search form submission
+        searchForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const searchTerm = searchInput.value.trim();
+          if (searchTerm) {
+            showMessageBox(`Searching for: "${searchTerm}"`, "info");
+            console.log("Search submitted:", searchTerm);
+            // In a real app, you'd perform a search here
+          } else {
+            showMessageBox("Please enter a search term.", "error");
+          }
+        });
+
+        // Modal close button
+        modalCloseButton.addEventListener("click", closeModal);
+
+        // Enhance Description Button (inside modal, so add listener after modal content is loaded)
+        enhanceDescriptionButton.addEventListener(
+          "click",
+          generateEnhancedDescription
+        );
+      });
+    </script>
+  </body>
+</html>
